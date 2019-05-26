@@ -4,7 +4,7 @@
     <TargetFramework>netcoreapp2.1</TargetFramework>
     <DockerTargetOS>Linux</DockerTargetOS>
     <UserSecretsId>da30e345-8fec-41ee-a7b4-60ee8eb92ba2</UserSecretsId>
-    <DocumentationFile>bin\Debug\netcoreapp2.1\PaymentGateway.xml</DocumentationFile>
+    <DocumentationFile>bin\Debug\netcoreapp2.1\PaymentGateway.WebApi.xml</DocumentationFile>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
