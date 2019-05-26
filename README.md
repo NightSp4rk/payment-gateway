@@ -11,3 +11,8 @@ Notable features include:
 - Docker for containerization
 - CI using GitLab
 - logging/metrics??
+
+
+Assumptions:
+- For the purposes of this challenge, a simple inmemory storage solution is used with EF Core instead of a full Microsoft SQL Server database, but on a production solution the latter would be the appropriate choice
+- The bank simulator only needs to provide a meaningful response to the gateway and does not need to include any business logic within the app to validate the request data
