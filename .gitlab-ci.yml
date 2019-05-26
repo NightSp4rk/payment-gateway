@@ -8,8 +8,6 @@ variables:
     test: "Example.Test"
 
 before_script:
-    - "dir"
-    - "cd src"
     - "dotnet restore"
 
 build:
