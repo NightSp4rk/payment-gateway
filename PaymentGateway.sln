@@ -3,15 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28010.2050
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PaymentGateway.WebApi", "PaymentGateway\PaymentGateway.WebApi.csproj", "{5ACD17DE-4DF1-4DA1-BCA5-832466EE98B4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PaymentGateway.WebApi", "PaymentGateway\PaymentGateway.WebApi.csproj", "{5ACD17DE-4DF1-4DA1-BCA5-832466EE98B4}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PaymentGateway.Client", "PaymentGateway.Client\PaymentGateway.Client\PaymentGateway.Client.csproj", "{2D2E13A7-FA6C-43D4-BA25-820BFA83A9A9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PaymentGateway.Client", "PaymentGateway.Client\PaymentGateway.Client\PaymentGateway.Client.csproj", "{2D2E13A7-FA6C-43D4-BA25-820BFA83A9A9}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PaymentGateway.Core.Tests", "PaymentGateway.Core.Tests\PaymentGateway.Core.Tests.csproj", "{ABC5E0F0-ACE9-48E8-B295-8DF825ADC2AD}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PaymentGateway.Core.Tests", "PaymentGateway.Core.Tests\PaymentGateway.Core.Tests.csproj", "{ABC5E0F0-ACE9-48E8-B295-8DF825ADC2AD}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PaymentGateway.Infrastructure", "PaymentGateway.Infrastructure\PaymentGateway.Infrastructure.csproj", "{7D391C93-3EEF-48BD-8A9F-1A55D731175F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PaymentGateway.Infrastructure", "PaymentGateway.Infrastructure\PaymentGateway.Infrastructure.csproj", "{7D391C93-3EEF-48BD-8A9F-1A55D731175F}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PaymentGateway.Core", "PaymentGateway.Core\PaymentGateway.Core.csproj", "{63981C26-6872-4C3D-9404-B0827309E224}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PaymentGateway.Core", "PaymentGateway.Core\PaymentGateway.Core.csproj", "{63981C26-6872-4C3D-9404-B0827309E224}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

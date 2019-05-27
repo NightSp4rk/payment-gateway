@@ -10,7 +10,7 @@ namespace PaymentGateway.Infrastructure
 {
     public interface IPaymentRepository
     {
-        Task<IPayment> Create(IPayment payment);
-        Task<IPayment> Read(string id);
+        Task<Payment> Create(Payment payment);
+        Task<Payment> Read(string id);
     }
 }

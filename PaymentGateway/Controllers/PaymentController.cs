@@ -42,9 +42,9 @@ namespace PaymentGateway.WebApi.Controllers
         [SwaggerOperation(operationId: "ProcessPayment")]
         [HttpPost("", Name = "ProcessPayment")]
         [ProducesResponseType(typeof(Payment), 200)]
-        public async Task<ActionResult<IPayment>> Post([FromBody] ProcessPaymentRequest processPaymentRequest)
+        public async Task<ActionResult<IPayment>> Post([FromBody] Payment payment)
         {
-            var processPaymentResponse = await _paymentRepository.Create(processPaymentRequest);
+            var processPaymentResponse = await _paymentRepository.Create(payment);
 
             return Ok(processPaymentResponse);
         }

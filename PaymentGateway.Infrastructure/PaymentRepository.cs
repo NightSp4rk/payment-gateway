@@ -24,23 +24,23 @@ namespace PaymentGateway.Infrastructure
             _paymentDbContext = paymentDbContext;
         }
 
-        public async Task<IPayment> Create(IPayment payment)
+        public async Task<Payment> Create(Payment payment)
         {
             payment = await ProcessPayment(payment);
-            Payment p = payment;
-            _paymentDbContext.Payments.Add(p);
+            _paymentDbContext.Payments.Add(payment);
+            _paymentDbContext.SaveChanges();
 
             return payment;
         }
 
-        public async Task<IPayment> Read(string id)
+        public async Task<Payment> Read(string id)
         {
-            IPayment payment = _paymentDbContext.Payments.Where(p => p.Id.ToString() == id).SingleOrDefault();
+            Payment payment = _paymentDbContext.Payments.Where(p => p.Id.ToString() == id).SingleOrDefault();
             GetPaymentResponse getPaymentResponse = new GetPaymentResponse();
-            return await Task.FromResult(getPaymentResponse);
+            return await Task.FromResult(payment);
         }
 
-        private async Task<ProcessPaymentWithBankResponse> ProcessPayment(IPayment payment)
+        private async Task<Payment> ProcessPayment(Payment payment)
         {
             httpClient.DefaultRequestHeaders.Accept.Clear();
             httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
@@ -50,7 +50,7 @@ namespace PaymentGateway.Infrastructure
             if (response.IsSuccessStatusCode)
             {
                 var content = await response.Content.ReadAsStringAsync();
-                return JsonConvert.DeserializeObject<ProcessPaymentWithBankResponse>(content);
+                return JsonConvert.DeserializeObject<Payment>(content);
             }
 
             return null;
