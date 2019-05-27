@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using PaymentGateway.Core;
+using PaymentGateway.Core.Requests;
 
 namespace PaymentGateway.Infrastructure
 {
@@ -25,7 +26,8 @@ namespace PaymentGateway.Infrastructure
         public async Task<GetPaymentResponse> Read(Guid id)
         {
             Payment payment = _paymentDbContext.Payments.Where(p => p.Id == id).SingleOrDefault();
-            return await Task.FromResult<Payment>(payment);
+            GetPaymentResponse getPaymentResponse = new GetPaymentResponse();
+            return await Task.FromResult<GetPaymentResponse>(getPaymentResponse);
         }
     }
 }

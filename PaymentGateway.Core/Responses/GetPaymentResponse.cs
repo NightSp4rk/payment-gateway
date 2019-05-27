@@ -4,7 +4,7 @@ using System.Text;
 
 namespace PaymentGateway.Core.Requests
 {
-    class GetPaymentResponse
+    public class GetPaymentResponse
     {
     }
 }

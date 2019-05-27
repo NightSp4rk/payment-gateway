@@ -18,7 +18,8 @@ namespace PaymentGateway.Controllers
             var payment = new Payment
             {
                 CardNumber = "",
-                ExpiryDate = new DateTime(),
+                ExpiryYear = 2019,
+                ExpiryMonth = 10,
                 Amount = 1000,
                 Currency = "USD",
                 Cvv = "123"
