@@ -9,6 +9,7 @@ namespace PaymentGateway.Core.Requests
     {
         public Guid Id { get; set; }
         public string CardNumber { get; set; }
+        public string CardHolderName { get; set; }
         public uint ExpiryYear { get; set; }
         public uint ExpiryMonth { get; set; }
         public uint Amount { get; set; }

@@ -24,23 +24,39 @@ namespace PaymentGateway.Infrastructure
             _paymentDbContext = paymentDbContext;
         }
 
-        public async Task<Payment> Create(Payment payment)
+        public async Task<Payment> Create(ProcessPaymentRequest payment)
         {
-            payment = await ProcessPayment(payment);
-            _paymentDbContext.Payments.Add(payment);
+            var bankResponse = await ProcessPayment(payment);
+
+            if(bankResponse == null)
+            {
+                bankResponse = new Payment
+                {
+                    Id = payment.Id,
+                    CardHolderName = payment.CardHolderName,
+                    CardNumber = payment.CardNumber,
+                    ExpiryYear = payment.ExpiryYear,
+                    ExpiryMonth = payment.ExpiryMonth,
+                    Amount = payment.Amount,
+                    Currency = payment.Currency,
+                    Cvv = payment.Cvv,
+                    BankSuccess = false
+                };
+            }
+
+            _paymentDbContext.Payments.Add(bankResponse);
             _paymentDbContext.SaveChanges();
 
+            return bankResponse;
+        }
+
+        public Payment Read(string id)
+        {
+            Payment payment = _paymentDbContext.Payments.Where(p => p.Id.ToString() == id).SingleOrDefault();
             return payment;
         }
 
-        public async Task<Payment> Read(string id)
-        {
-            Payment payment = _paymentDbContext.Payments.Where(p => p.Id.ToString() == id).SingleOrDefault();
-            GetPaymentResponse getPaymentResponse = new GetPaymentResponse();
-            return await Task.FromResult(payment);
-        }
-
-        private async Task<Payment> ProcessPayment(Payment payment)
+        private async Task<Payment> ProcessPayment(ProcessPaymentRequest payment)
         {
             httpClient.DefaultRequestHeaders.Accept.Clear();
             httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
