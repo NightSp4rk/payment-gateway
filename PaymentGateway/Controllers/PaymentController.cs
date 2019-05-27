@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using PaymentGateway.Models;
 using Swashbuckle.AspNetCore.SwaggerGen;
+using PaymentGateway.Core;
 
 namespace PaymentGateway.Controllers
 {

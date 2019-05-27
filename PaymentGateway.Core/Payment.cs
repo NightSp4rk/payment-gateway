@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
-namespace PaymentGateway.Models
+namespace PaymentGateway.Core
 {
     /// <summary>
     /// Payment model for API
@@ -11,9 +8,12 @@ namespace PaymentGateway.Models
     public class Payment
     {
         public string CardNumber { get; set; }
-        public DateTime ExpiryDate { get; set; }
+        public uint ExpiryYear { get; set; }
+        public uint ExpiryMonth { get; set; }
         public uint Amount { get; set; }
         public string Currency { get; set; }
         public string Cvv { get; set; }
+        public bool BankSuccess { get; set; }
+        public string BankTransactionId { get; set; }
     }
 }
