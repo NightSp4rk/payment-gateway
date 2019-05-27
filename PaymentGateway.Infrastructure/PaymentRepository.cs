@@ -27,7 +27,7 @@ namespace PaymentGateway.Infrastructure
         {
             Payment payment = _paymentDbContext.Payments.Where(p => p.Id == id).SingleOrDefault();
             GetPaymentResponse getPaymentResponse = new GetPaymentResponse();
-            return await Task.FromResult<GetPaymentResponse>(getPaymentResponse);
+            return await Task.FromResult(getPaymentResponse);
         }
     }
 }
