@@ -27,7 +27,8 @@ namespace PaymentGateway.Infrastructure
         public async Task<IPayment> Create(IPayment payment)
         {
             payment = await ProcessPayment(payment);
-            _paymentDbContext.Payments.Add(payment);
+            Payment p = payment;
+            _paymentDbContext.Payments.Add(p);
 
             return payment;
         }

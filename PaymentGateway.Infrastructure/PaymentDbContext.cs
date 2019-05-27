@@ -11,6 +11,6 @@ namespace PaymentGateway.Infrastructure
         {
         }
 
-        public DbSet<IPayment> Payments { get; set; }
+        public DbSet<Payment> Payments { get; set; }
     }
 }
