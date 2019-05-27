@@ -9,26 +9,26 @@ using PaymentGateway.Core.Entities;
 using PaymentGateway.Core.Requests;
 using PaymentGateway.Infrastructure;
 
-namespace PaymentGateway.Controllers
+namespace PaymentGateway.WebApi.Controllers
 {
     [Route("api/v1/[controller]")]
     [ApiController]
     [Produces("application/json")]
     public class PaymentController : ControllerBase
     {
-        private readonly PaymentDbContext _paymentDbContext;
+        private readonly IPaymentRepository _paymentRepository;
 
-        public PaymentController(PaymentDbContext paymentDbContext)
+        public PaymentController(IPaymentRepository paymentRepository)
         {
-            _paymentDbContext = paymentDbContext;
+            _paymentRepository = paymentRepository;
         }
 
         [SwaggerOperation(operationId: "GetPayment")]
         [HttpGet("", Name = "GetPayment")]
         [ProducesResponseType(typeof(Payment), 200)]
-        public async Task<ActionResult<IPayment>> Get(Guid id)
+        public async Task<ActionResult<IPayment>> Get(IPayment payment)
         {
-            var getPaymentResponse = new GetPaymentResponse();
+            var getPaymentResponse = await _paymentRepository.Create(payment);
 
             return Ok(getPaymentResponse);
         }
