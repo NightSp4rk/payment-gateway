@@ -29,6 +29,9 @@ namespace PaymentGateway
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDbContext<PaymentDbContext>(options => options.UseInMemoryDatabase(databaseName: "Payments"));
+            services.AddScoped<IPaymentRepository, PaymentRepository>();
+
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
             services.AddSwaggerGen(c =>
@@ -41,8 +44,6 @@ namespace PaymentGateway
                 var xmlPath = Path.Combine(basePath, fileName);
                 c.IncludeXmlComments(xmlPath);
             });
-
-            services.AddDbContext<PaymentDbContext>(options => options.UseInMemoryDatabase(databaseName: "Payments"));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

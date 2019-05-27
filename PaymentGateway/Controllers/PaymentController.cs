@@ -35,6 +35,7 @@ namespace PaymentGateway.WebApi.Controllers
                 return NotFound();
             }
 
+            return Ok("hello");
             return Ok(getPaymentResponse);
         }
 
