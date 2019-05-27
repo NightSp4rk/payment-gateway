@@ -20,7 +20,7 @@ namespace PaymentGateway.Controllers
 
         public PaymentController(PaymentDbContext paymentDbContext)
         {
-            this._paymentDbContext = paymentDbContext;
+            _paymentDbContext = paymentDbContext;
         }
 
         [SwaggerOperation(operationId: "GetPayment")]
