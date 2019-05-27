@@ -15,18 +15,9 @@ namespace PaymentGateway.Controllers
         [SwaggerOperation(operationId: "GetPayment")]
         [HttpGet("", Name = "GetPayment")]
         [ProducesResponseType(typeof(Payment), 200)]
-        public async Task<ActionResult<GetPaymentResponse>> Get(Guid id)
+        public async Task<ActionResult<IPayment>> Get(Guid id)
         {
-            var getPaymentResponse = new GetPaymentResponse(); 
-            //var payment = new Payment
-            //{
-            //    CardNumber = new Card(),
-            //    ExpiryYear = 2019,
-            //    ExpiryMonth = 10,
-            //    Amount = 1000,
-            //    Currency = "USD",
-            //    Cvv = "123"
-            //};
+            var getPaymentResponse = new GetPaymentResponse();
 
             return Ok(getPaymentResponse);
         }

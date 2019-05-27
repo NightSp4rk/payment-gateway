@@ -1,7 +1,7 @@
 ﻿using PaymentGateway.Core.Entities;
 using System;
 
-namespace PaymentGateway.Core
+namespace PaymentGateway.Core.Entities
 {
     /// <summary>
     /// Payment model for API
