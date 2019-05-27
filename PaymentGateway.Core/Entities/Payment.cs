@@ -7,6 +7,7 @@ namespace PaymentGateway.Core
     /// </summary>
     public class Payment
     {
+        public Guid Id { get; set; }
         public string CardNumber { get; set; }
         public uint ExpiryYear { get; set; }
         public uint ExpiryMonth { get; set; }
