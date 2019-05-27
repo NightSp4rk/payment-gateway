@@ -8,5 +8,6 @@ namespace PaymentGateway.Core.Requests
     public class ProcessPaymentRequest : IPayment
     {
         public Guid Id { get; set; }
+        public bool BankSuccess { get; set; }
     }
 }

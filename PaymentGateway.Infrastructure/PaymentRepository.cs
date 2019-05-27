@@ -32,9 +32,9 @@ namespace PaymentGateway.Infrastructure
             return payment;
         }
 
-        public async Task<IPayment> Read(IPayment paymentrequest)
+        public async Task<IPayment> Read(string id)
         {
-            IPayment payment = _paymentDbContext.Payments.Where(p => p.Id == paymentrequest.Id).SingleOrDefault();
+            IPayment payment = _paymentDbContext.Payments.Where(p => p.Id.ToString() == id).SingleOrDefault();
             GetPaymentResponse getPaymentResponse = new GetPaymentResponse();
             return await Task.FromResult(getPaymentResponse);
         }

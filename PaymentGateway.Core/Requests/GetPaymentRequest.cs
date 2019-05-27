@@ -9,5 +9,6 @@ namespace PaymentGateway.Core.Requests
     {
         public Guid Id { get; set; }
         public Card CardNumber { get; set; }
+        public bool BankSuccess { get; set; }
     }
 }

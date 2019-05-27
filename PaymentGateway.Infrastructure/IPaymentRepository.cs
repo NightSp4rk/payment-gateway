@@ -11,6 +11,6 @@ namespace PaymentGateway.Infrastructure
     public interface IPaymentRepository
     {
         Task<IPayment> Create(IPayment payment);
-        Task<IPayment> Read(IPayment paymentrequest);
+        Task<IPayment> Read(string id);
     }
 }

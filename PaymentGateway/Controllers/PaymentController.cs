@@ -26,11 +26,26 @@ namespace PaymentGateway.WebApi.Controllers
         [SwaggerOperation(operationId: "GetPayment")]
         [HttpGet("", Name = "GetPayment")]
         [ProducesResponseType(typeof(Payment), 200)]
-        public async Task<ActionResult<IPayment>> Get(IPayment payment)
+        public async Task<ActionResult<IPayment>> Get(string id)
         {
-            var getPaymentResponse = await _paymentRepository.Create(payment);
+            var getPaymentResponse = await _paymentRepository.Read(id);
+
+            if (getPaymentResponse == null)
+            {
+                return NotFound();
+            }
 
             return Ok(getPaymentResponse);
+        }
+
+        [SwaggerOperation(operationId: "ProcessPayment")]
+        [HttpPost("", Name = "ProcessPayment")]
+        [ProducesResponseType(typeof(Payment), 200)]
+        public async Task<ActionResult<IPayment>> Post([FromBody] ProcessPaymentRequest processPaymentRequest)
+        {
+            var processPaymentResponse = await _paymentRepository.Create(processPaymentRequest);
+
+            return Ok(processPaymentResponse);
         }
     }
 }

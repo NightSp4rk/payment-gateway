@@ -7,5 +7,6 @@ namespace PaymentGateway.Core.Entities
     public interface IPayment
     {
         Guid Id { get; set; }
+        bool BankSuccess { get; set; }
     }
 }
