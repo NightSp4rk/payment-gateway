@@ -39,7 +39,7 @@ Notable features include:
 - Run command "docker-compose up"
 
 **Launch**
-- Go to "https://localhost:44318/swagger/" to open the Swagger UI
+- Go to "https://localhost:44318/swagger/" to open the Swagger UI, or use Postman to test APIs
 - Two API calls available:
     - Create a new payment
     - View a previous payment
@@ -49,7 +49,7 @@ Notable features include:
 POST /api/v1/ProcessPayment
 ```
 
-
+**View previous payment**
 ```curl
 GET /api/v1/GetPayment
 ```
