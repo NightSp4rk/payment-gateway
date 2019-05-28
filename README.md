@@ -31,9 +31,9 @@ Notable features include:
 ## Usage
 
 **Start bank simulator**
-Go to "payment-gateway/PaymentGateway.BankSimulator/BankSimulator"
-Run command "docker-compose up"
+- Go to "payment-gateway/PaymentGateway.BankSimulator/BankSimulator"
+- Run command "docker-compose up"
 
 **Start the Web API**
-Go to "payment-gateway/PaymentGateway"
-Run command "docker-compose up"
+- Go to "payment-gateway/PaymentGateway"
+- Run command "docker-compose up"
