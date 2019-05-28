@@ -25,7 +25,7 @@ Notable features include:
 ## Requirements
 
 - .NET Core 2.2
-- Docker for Windows
+- Docker Desktop for Windows
 
 
 ## Usage
