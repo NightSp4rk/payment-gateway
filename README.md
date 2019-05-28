@@ -49,7 +49,7 @@ Notable features include:
 POST /api/v1/ProcessPayment
 ```
 
-```json
+json example
 {
   "id": "f16bf40d-8bcb-4084-befd-aff2108806c1",
   "cardNumber": "5500 0000 0000 0004",
@@ -61,7 +61,7 @@ POST /api/v1/ProcessPayment
   "cvv": "string",
   "bankSuccess": false
 }
-```
+
 
 **View previous payment**
 ```curl
