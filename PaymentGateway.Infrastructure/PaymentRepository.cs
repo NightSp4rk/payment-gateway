@@ -58,7 +58,7 @@ namespace PaymentGateway.Infrastructure
         public Payment Read(string id)
         {
             Payment payment = _paymentDbContext.Payments.Where(p => p.Id.ToString() == id).SingleOrDefault();
-            if(payment.CardNumber.Length > 4) payment.CardNumber = payment.CardNumber.Substring(0, 4) + new String('*', payment.CardNumber.Length - 4);
+            if(payment != null && payment.CardNumber.Length > 4) payment.CardNumber = payment.CardNumber.Substring(0, 4) + new String('*', payment.CardNumber.Length - 4);
             return payment;
         }
 
@@ -67,18 +67,15 @@ namespace PaymentGateway.Infrastructure
             string apiPath = "/api/payment";
             httpClient.DefaultRequestHeaders.Accept.Clear();
             httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-            string uri = "https://localhost:44331" + apiPath;
+            string uri = "https://127.0.0.1:44331" + apiPath;
             var response = await httpClient.PostAsync(uri, new StringContent(JsonConvert.SerializeObject(payment), Encoding.UTF8, "application/json"));
 
             if (response.IsSuccessStatusCode)
             {
 
                 var content = await response.Content.ReadAsStringAsync();
-                //server.Stop();
                 return JsonConvert.DeserializeObject<Payment>(content);
             }
-
-            //server.Stop();
             return null;
         }
     }
