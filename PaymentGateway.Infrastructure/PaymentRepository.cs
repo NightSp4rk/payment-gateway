@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
@@ -12,6 +13,7 @@ using PaymentGateway.Core.Requests;
 using WireMock.RequestBuilders;
 using WireMock.ResponseBuilders;
 using WireMock.Server;
+using WireMock.Settings;
 
 namespace PaymentGateway.Infrastructure
 {
@@ -61,38 +63,21 @@ namespace PaymentGateway.Infrastructure
 
         private async Task<Payment> ProcessPayment(ProcessPaymentRequest payment)
         {
-            var server = FluentMockServer.Start();
-            string apiPath = "/bank/CreateTransaction";
-
-            server.Given(
-                Request.Create().WithPath(apiPath).UsingPost().WithBody(""))
-                .RespondWith(Response.Create().WithStatusCode(200).WithHeader("Content-Type", "application/json").WithBodyAsJson(new Payment {
-                    Id = payment.Id,
-                    CardNumber = payment.CardNumber,
-                    CardHolderName = payment.CardHolderName,
-                    ExpiryYear = payment.ExpiryYear,
-                    ExpiryMonth = payment.ExpiryMonth,
-                    Amount = payment.Amount,
-                    Currency = payment.Currency,
-                    Cvv = payment.Cvv,
-                    BankSuccess = true,
-                    BankTransactionId = Guid.NewGuid().ToString()
-    }));
-
+            string apiPath = "/api/payment";
             httpClient.DefaultRequestHeaders.Accept.Clear();
             httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-            string uri = "https://localhost:"+server.Ports.First()+apiPath;
+            string uri = "https://localhost:44331" + apiPath;
             var response = await httpClient.PostAsync(uri, new StringContent(JsonConvert.SerializeObject(payment), Encoding.UTF8, "application/json"));
 
             if (response.IsSuccessStatusCode)
             {
 
                 var content = await response.Content.ReadAsStringAsync();
-                server.Stop();
+                //server.Stop();
                 return JsonConvert.DeserializeObject<Payment>(content);
             }
 
-            server.Stop();
+            //server.Stop();
             return null;
         }
     }
