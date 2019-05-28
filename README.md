@@ -49,7 +49,23 @@ Notable features include:
 POST /api/v1/ProcessPayment
 ```
 
+```json
+{
+  "id": "f16bf40d-8bcb-4084-befd-aff2108806c1",
+  "cardNumber": "5500 0000 0000 0004",
+  "cardHolderName": "string",
+  "expiryYear": 0,
+  "expiryMonth": 0,
+  "amount": 0,
+  "currency": "string",
+  "cvv": "string",
+  "bankSuccess": false
+}
+```
+
 **View previous payment**
 ```curl
 GET /api/v1/GetPayment
 ```
+
+e.g. https://localhost:44318/api/v1/Payment?id=8d652bac-a4fa-4410-a8a7-a8b3e3d6b80b
