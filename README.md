@@ -37,3 +37,19 @@ Notable features include:
 **Start the Web API**
 - Go to "payment-gateway/PaymentGateway"
 - Run command "docker-compose up"
+
+**Launch**
+- Go to "https://localhost:44318/swagger/" to open the Swagger UI
+- Two API calls available:
+    - Create a new payment
+    - View a previous payment
+
+**Create new payment**
+```curl
+POST /api/v1/ProcessPayment
+```
+
+
+```curl
+GET /api/v1/GetPayment
+```
