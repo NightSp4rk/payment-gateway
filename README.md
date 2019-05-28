@@ -18,7 +18,7 @@ Notable features include:
 - The bank simulator only provides a meaningful response to the gateway and does not include any business logic within the app to validate the request data
 - Ideally, the credit card information should be encrypted and there should be proper authentication
 - Logging and metrics can be added through Kubernetes on GitLab
-- validations can be greatly improved
+- Validations can be greatly improved
 - Faced issues with Dockerized version when calling Bank Simulator and for mocking API with Wiremock for test cases
 
 
