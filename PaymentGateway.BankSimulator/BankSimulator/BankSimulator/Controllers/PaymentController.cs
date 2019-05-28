@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using BankSimulator.Models;
 using Microsoft.AspNetCore.Mvc;
+using CreditCardValidator;
 
 namespace BankSimulator.Controllers
 {
@@ -15,9 +16,15 @@ namespace BankSimulator.Controllers
         [ProducesResponseType(typeof(Payment), 201)]
         public ActionResult<Payment> Post([FromBody] Payment payment)
         {
-            var resp = new Payment();
+            var card = new CreditCardDetector(payment.CardNumber);
 
-            return Ok(resp);
+            if (card.IsValid())
+            {
+                payment.BankSuccess = true;
+                payment.BankTransactionId = Guid.NewGuid().ToString();
+            }
+
+            return Ok(payment);
         }
     }
 }

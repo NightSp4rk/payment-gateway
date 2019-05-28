@@ -58,6 +58,7 @@ namespace PaymentGateway.Infrastructure
         public Payment Read(string id)
         {
             Payment payment = _paymentDbContext.Payments.Where(p => p.Id.ToString() == id).SingleOrDefault();
+            if(payment.CardNumber.Length > 4) payment.CardNumber = payment.CardNumber.Substring(0, 4) + new String('*', payment.CardNumber.Length - 4);
             return payment;
         }
 
