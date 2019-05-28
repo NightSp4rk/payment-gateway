@@ -78,8 +78,9 @@ namespace PaymentGateway.Core.Tests
 
             // Act
             var response = await controller.Post(request);
-            
+
             // Assert
+            Assert.True(response.Value.BankSuccess == true && response.Value.BankTransactionId != null);
             Assert.True(response.Value == _paymentDbContext.Payments.Find(response.Value.Id));
         }
     }
