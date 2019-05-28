@@ -50,17 +50,17 @@ POST /api/v1/ProcessPayment
 ```
 
 JSON example  
-{
-  "id": "f16bf40d-8bcb-4084-befd-aff2108806c1",
-  "cardNumber": "5500 0000 0000 0004",
-  "cardHolderName": "string",
-  "expiryYear": 0,
-  "expiryMonth": 0,
-  "amount": 0,
-  "currency": "string",
-  "cvv": "string",
-  "bankSuccess": false
-}
+{  
+  "id": "f16bf40d-8bcb-4084-befd-aff2108806c1",  
+  "cardNumber": "5500 0000 0000 0004",  
+  "cardHolderName": "string",  
+  "expiryYear": 0,  
+  "expiryMonth": 0,  
+  "amount": 0,  
+  "currency": "string",  
+  "cvv": "string",  
+  "bankSuccess": false  
+}  
 
 
 **View previous payment**
