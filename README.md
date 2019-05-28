@@ -49,7 +49,7 @@ Notable features include:
 POST /api/v1/ProcessPayment
 ```
 
-JSON example  
+JSON body:  
 {  
   "id": "f16bf40d-8bcb-4084-befd-aff2108806c1",  
   "cardNumber": "5500 0000 0000 0004",  
