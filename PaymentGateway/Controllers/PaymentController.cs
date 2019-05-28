@@ -45,6 +45,7 @@ namespace PaymentGateway.WebApi.Controllers
         [ProducesResponseType(typeof(Payment), 201)]
         public async Task<ActionResult<IPayment>> Post([FromBody] ProcessPaymentRequest payment)
         {
+            payment.BankSuccess = false;
             var response = await _paymentRepository.Create(payment);
 
             return Ok(response);

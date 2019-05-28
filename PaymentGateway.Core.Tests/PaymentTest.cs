@@ -1,4 +1,5 @@
-using Microsoft.AspNetCore.Mvc;
+﻿using PaymentGateway.Core.Entities;
+using PaymentGateway.Core.Requests;
 using PaymentGateway.Infrastructure;
 using PaymentGateway.WebApi.Controllers;
 using System;
@@ -17,59 +18,69 @@ namespace PaymentGateway.Core.Tests
         }
 
         [Fact]
-        public void TestGePayment()
+        public void TestGetPayment()
         {
             // Arrange
             var dbContext = _paymentDbContext;
             var repository = new PaymentRepository(dbContext);
             var controller = new PaymentController(repository);
 
-            // Act
-            var response = await controller.GetStockItemsAsync() as ObjectResult;
-            var value = response.Value as IPagedResponse<StockItem>;
+            var guid = new Guid();
+            var payment = new Payment
+            {
+                Id = guid,
+                CardNumber = "4111 1111 1111 1111",
+                CardHolderName = "John Doe",
+                ExpiryYear = 2020,
+                ExpiryMonth = 11,
+                Amount = 2000,
+                Currency = "USD",
+                Cvv = "123",
+                BankSuccess = true,
+                BankTransactionId = new Guid().ToString()
+            };
+            
+            _paymentDbContext.Payments.Add(payment);
 
-            dbContext.Dispose();
+
+            // Act
+            var response = controller.Get(guid.ToString());
+            var value = response.Value;
+
+            _paymentDbContext.Payments.RemoveRange(_paymentDbContext.Payments);
 
             // Assert
-            Assert.False(value.DidError);
+            Assert.False(value == null);
+            Assert.False(value.Id == null);
+            Assert.False(value.BankSuccess == false);
         }
 
         [Fact]
         public async Task TestProcessPaymentAsync()
         {
             // Arrange
-            var dbContext = DbContextMocker.GetWideWorldImportersDbContext(nameof(TestPostStockItemAsync));
-            var controller = new WarehouseController(null, dbContext);
-            var request = new PostStockItemsRequest
+            var dbContext = _paymentDbContext;
+            var repository = new PaymentRepository(dbContext);
+            var controller = new PaymentController(repository);
+
+            var request = new ProcessPaymentRequest
             {
-                StockItemID = 100,
-                StockItemName = "USB anime flash drive - Goku",
-                SupplierID = 12,
-                UnitPackageID = 7,
-                OuterPackageID = 7,
-                LeadTimeDays = 14,
-                QuantityPerOuter = 1,
-                IsChillerStock = false,
-                TaxRate = 15.000m,
-                UnitPrice = 32.00m,
-                RecommendedRetailPrice = 47.84m,
-                TypicalWeightPerUnit = 0.050m,
-                CustomFields = "{ \"CountryOfManufacture\": \"Japan\", \"Tags\": [\"32GB\",\"USB Powered\"] }",
-                Tags = "[\"32GB\",\"USB Powered\"]",
-                SearchDetails = "USB anime flash drive - Goku",
-                LastEditedBy = 1,
-                ValidFrom = DateTime.Now,
-                ValidTo = DateTime.Now.AddYears(5)
+                Id = new Guid(),
+                CardNumber = "4111 1111 1111 1111",
+                CardHolderName = "John Doe",
+                ExpiryYear = 2020,
+                ExpiryMonth = 11,
+                Amount = 2000,
+                Currency = "USD",
+                Cvv = "123",
+                BankSuccess = false
             };
 
             // Act
-            var response = await controller.PostStockItemAsync(request) as ObjectResult;
-            var value = response.Value as ISingleResponse<StockItem>;
-
-            dbContext.Dispose();
-
+            var response = await controller.Post(request);
+            
             // Assert
-            Assert.False(value.DidError);
+            Assert.True(response.Value == _paymentDbContext.Payments.Find(response.Value.Id));
         }
     }
 }
